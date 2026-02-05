@@ -45,16 +45,16 @@ services:
       bash -c "pip install -r /opt/airflow/requirements.txt && airflow db init && airflow db upgrade && airflow users create --username admin --firstname admin --lastname admin --role Admin --email airflow@airflow.com --password admin"
     restart: "no"
 
-    airflow-webserver:
-      <<: *airflow-common
-      command: webserver
-      ports:
-        - "8080:8080"
+  airflow-webserver:
+    <<: *airflow-common
+    command: webserver
+    ports:
+      - "8080:8080"
 
-    airflow-scheduler:
-      <<: *airflow-common
-      command: scheduler
+  airflow-scheduler:
+    <<: *airflow-common
+    command: scheduler
 
-    airflow-worker:
-      <<: *airflow-common
-      command: celery worker
+  airflow-worker:
+    <<: *airflow-common
+    command: celery worker
